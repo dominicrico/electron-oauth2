@@ -64,11 +64,13 @@ module.exports = function (config, windowParams) {
       }
 
       authWindow.webContents.on('will-navigate', (event, url) => {
+        console.log('will-navigate', url)
         onCallback(url);
       });
 
-      authWindow.webContents.on('did-get-redirect-request', (event, oldUrl, newUrl) => {
-        onCallback(newUrl);
+      authWindow.webContents.on('did-redirect-navigation', (event, url) => {
+        console.log('did-redirect-navigation', url)
+        onCallback(url);
       });
     });
   }
