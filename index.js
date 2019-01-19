@@ -65,7 +65,7 @@ module.exports = function (config, windowParams) {
       
       authWindow.webContents.session.webRequest.onBeforeRedirect({ urls: [config.redirectUri] }, detail => {
         console.log('before redirect', url)
-        onCallback(url);
+        onCallback(detail.redirectURL);
       });
 
       authWindow.webContents.on('will-navigate', (event, url) => {
